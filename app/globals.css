@@ -506,14 +506,16 @@ nav {
 }
 
 /* ============ SOLUTION / FEATURE GRID ============ */
-/* Base = light. `.invert` = the one dark feature section for contrast. */
+/* Base = light. `.is-dark` = the one dark feature section for contrast.
+   NB: must NOT be named `invert` — that collides with Tailwind's `.invert`
+   utility (filter: invert(100%)), which inverts every color in the section. */
 .solution {
   background: var(--paper);
   color: var(--ink);
   padding: 130px 40px;
   position: relative;
 }
-.solution.invert {
+.solution.is-dark {
   background: var(--ink);
   color: var(--paper);
 }
@@ -537,8 +539,8 @@ nav {
   font-weight: 400;
   color: var(--accent-dark);
 }
-.solution.invert h2 em { color: var(--accent); }
-.solution.invert .section-label { color: var(--accent); }
+.solution.is-dark h2 em { color: var(--accent); }
+.solution.is-dark .section-label { color: var(--accent); }
 .solution-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -556,11 +558,11 @@ nav {
   box-shadow: 0 22px 46px -16px rgba(18, 17, 16, 0.18);
   border-color: rgba(191, 155, 90, 0.5);
 }
-.solution.invert .solution-card {
+.solution.is-dark .solution-card {
   background: var(--ink-soft);
   border-color: var(--ink-line);
 }
-.solution.invert .solution-card:hover {
+.solution.is-dark .solution-card:hover {
   border-color: rgba(191, 155, 90, 0.5);
   box-shadow: 0 22px 46px -16px rgba(0, 0, 0, 0.55);
 }
@@ -577,13 +579,13 @@ nav {
   font-weight: 400;
   color: var(--accent-dark);
 }
-.solution.invert .solution-card h3 em { color: var(--accent); }
+.solution.is-dark .solution-card h3 em { color: var(--accent); }
 .solution-card p {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
 }
-.solution.invert .solution-card p { color: rgba(250, 249, 245, 0.7); }
+.solution.is-dark .solution-card p { color: rgba(250, 249, 245, 0.7); }
 .feature-icon {
   width: 48px;
   height: 48px;
@@ -596,7 +598,7 @@ nav {
   color: var(--accent-dark);
   margin-bottom: 26px;
 }
-.solution.invert .feature-icon {
+.solution.is-dark .feature-icon {
   background: rgba(191, 155, 90, 0.14);
   border-color: rgba(191, 155, 90, 0.3);
   color: var(--accent);

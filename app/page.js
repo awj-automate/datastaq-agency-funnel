@@ -278,9 +278,10 @@ export default function HomePage() {
       </section>
 
       {/* ============ 5. THE SOLUTION ============ */}
-      {/* .invert = the one dark feature section, for contrast against the
-          otherwise-light page (see .solution.invert in globals.css). */}
-      <section className="solution invert">
+      {/* .is-dark = the one dark feature section, for contrast against the
+          otherwise-light page. Do NOT name this `invert` — that collides with
+          Tailwind's `.invert` utility (filter: invert(100%)). */}
+      <section className="solution is-dark">
         <div className="solution-inner">
           <div className="section-label">The solution</div>
           <h2>
