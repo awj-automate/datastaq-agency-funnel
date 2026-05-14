@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DataStaq AI — Your MVP, shipped in 30 days. Guaranteed.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --ink-soft: #141414;
+    --ink-line: #1f1f1f;
+    --paper: #f4f1ea;
+    --paper-warm: #ebe6db;
+    --paper-line: #d9d2c2;
+    --accent: #ff5722;
+    --accent-soft: #ffb199;
+    --gold: #c9a961;
+    --text-muted: #6b6b6b;
+    --text-muted-dark: #8a8a8a;
+    --serif: 'Fraunces', 'Georgia', serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--paper);
+    letter-spacing: -0.02em;
+  }
+  .logo em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+  }
+  .nav-cta:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 130px 40px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255, 87, 34, 0.12), transparent 45%),
+      radial-gradient(circle at 85% 70%, rgba(201, 169, 97, 0.08), transparent 45%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+
+  .hero-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    animation: fadeIn 0.8s ease-out;
+  }
+  .hero-meta .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(38px, 6vw, 86px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 56px;
+    max-width: 1100px;
+    animation: fadeUp 1s ease-out 0.2s both;
+  }
+  .hero-meta-centered {
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-h1-centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    font-size: clamp(36px, 5.5vw, 76px);
+    line-height: 1.05;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero h1 .thirty {
+    font-weight: 900;
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .thirty::after {
+    content: "";
+    position: absolute;
+    left: -4px; right: -4px;
+    bottom: 8px;
+    height: 14px;
+    background: var(--accent);
+    z-index: -1;
+    transform: skewX(-8deg);
+  }
+
+  .hero-video {
+    max-width: 1040px;
+    margin: 0 0 56px;
+    animation: fadeUp 1s ease-out 0.35s both;
+  }
+
+  .hero-sub {
+    font-size: 22px;
+    line-height: 1.45;
+    color: rgba(244, 241, 234, 0.75);
+    max-width: 720px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeUp 1s ease-out 0.5s both;
+  }
+  .hero-sub strong {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 72px;
+    animation: fadeUp 1s ease-out 0.65s both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 22px 40px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary:hover {
+    background: var(--paper);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--accent);
+  }
+  .btn-primary .arrow {
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover .arrow {
+    transform: translateX(6px);
+  }
+
+  .btn-secondary {
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.3s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-proof {
+    display: flex;
+    gap: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    max-width: 720px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.4);
+    animation: fadeIn 1s ease-out 0.85s both;
+  }
+  .hero-proof span strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--paper);
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ============ VIDEO SECTION ============ */
+  .video-section {
+    background: var(--paper);
+    padding: 120px 40px;
+    position: relative;
+  }
+  .video-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .video-label {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .video-heading {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 64px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .video-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .video-container {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.1),
+      0 30px 80px -20px rgba(0,0,0,0.3);
+    border: 1px solid var(--paper-line);
+  }
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at center, #1a1a1a, #0a0a0a);
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+  .video-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .play-button {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.6);
+    animation: pulseRing 2.5s infinite;
+  }
+  @keyframes pulseRing {
+    0% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.5); }
+    70% { box-shadow: 0 0 0 30px rgba(255, 87, 34, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+  }
+  .play-button svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--ink);
+    margin-left: 6px;
+  }
+  .video-placeholder:hover .play-button {
+    transform: scale(1.1);
+    background: var(--paper);
+  }
+  .video-badge {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.6);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 2;
+  }
+  .video-badge .rec {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  .video-duration {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: rgba(244, 241, 234, 0.6);
+    z-index: 2;
+  }
+
+  .video-cta-below {
+    text-align: center;
+    margin-top: 48px;
+  }
+  .video-cta-below a {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+  .video-cta-below a:hover {
+    color: var(--accent);
+  }
+
+  /* ============ STAT STRIP ============ */
+  .stat-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px;
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .stat-strip-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .stat {
+    border-left: 1px solid rgba(255,255,255,0.15);
+    padding-left: 24px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .stat-num em {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,241,234,0.5);
+    line-height: 1.4;
+  }
+
+  /* ============ PROBLEM SECTION ============ */
+  .problem {
+    padding: 160px 40px 140px;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .problem h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 60px;
+    max-width: 960px;
+  }
+  .problem h2 em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+  .problem h2 strike {
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    color: var(--text-muted);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 80px;
+    align-items: start;
+  }
+
+  .problem-text p {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .problem-text p:last-child {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink);
+    padding-top: 24px;
+    border-top: 1px solid var(--paper-line);
+    margin-top: 32px;
+  }
+
+  .problem-list {
+    background: var(--paper-warm);
+    padding: 40px;
+    border-left: 3px solid var(--accent);
+  }
+  .problem-list-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .problem-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .problem-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .problem-item:first-child { padding-top: 0; }
+  .problem-item .num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 40px;
+  }
+  .problem-item .text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .problem-item .text strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* ============ SOLUTION ============ */
+  .solution {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 160px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .solution::before {
+    content: "30";
+    position: absolute;
+    right: -60px;
+    top: 40%;
+    font-family: var(--serif);
+    font-size: 500px;
+    font-weight: 300;
+    color: rgba(255, 87, 34, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    font-style: italic;
+  }
+
+  .solution-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .solution h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 80px;
+    max-width: 980px;
+  }
+  .solution h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .solution-card {
+    background: var(--ink);
+    padding: 48px 40px;
+    transition: background 0.4s;
+    position: relative;
+  }
+  .solution-card:hover {
+    background: var(--ink-soft);
+  }
+  .solution-card .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    margin-bottom: 40px;
+  }
+  .solution-card h3 {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .solution-card h3 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .solution-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(244, 241, 234, 0.65);
+  }
+
+  /* ============ PROCESS ============ */
+  .process {
+    padding: 160px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .process-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 100px;
+    align-items: end;
+  }
+  .process-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+  .process-header h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .process-header p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    padding-bottom: 12px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: var(--paper-line);
+  }
+
+  .milestone {
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+    gap: 48px;
+    padding: 40px 0;
+    position: relative;
+    border-bottom: 1px solid var(--paper-line);
+    align-items: start;
+  }
+  .milestone:last-child { border-bottom: none; }
+  .milestone::before {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 52px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+  }
+  .milestone.active::before {
+    background: var(--accent);
+  }
+
+  .milestone-week {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+  .milestone-week strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .milestone h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .milestone p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* ============ GUARANTEE ============ */
+  .guarantee {
+    padding: 140px 40px;
+    background: var(--paper-warm);
+    position: relative;
+    overflow: hidden;
+  }
+  .guarantee-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .seal {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 48px;
+    position: relative;
+  }
+  .seal-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    animation: rotate 30s linear infinite;
+  }
+  .seal-text {
+    position: absolute;
+    inset: 0;
+    animation: rotate 30s linear infinite;
+  }
+  .seal-inner {
+    position: absolute;
+    inset: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+  }
+  .seal-inner .big {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1;
+    font-style: italic;
+  }
+  .seal-inner .sm {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    margin-top: 6px;
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .guarantee h2 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.5vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .guarantee h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .guarantee p {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* ============ PROOF / BUILDS ============ */
+  .builds {
+    padding: 160px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .builds-header {
+    margin-bottom: 80px;
+  }
+  .builds-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+  }
+  .builds-header h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .build-card {
+    display: grid;
+    grid-template-columns: 180px 1fr 280px;
+    gap: 60px;
+    padding: 48px 0;
+    border-top: 1px solid var(--paper-line);
+    align-items: start;
+  }
+  .build-card:last-child {
+    border-bottom: 1px solid var(--paper-line);
+  }
+
+  .build-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 8px;
+  }
+
+  .build-content h3 {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .build-content p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .build-stat {
+    text-align: right;
+    padding-top: 4px;
+  }
+  .build-stat .before {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-decoration: line-through;
+    text-decoration-color: var(--accent);
+  }
+  .build-stat .after {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .build-stat .after-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+
+  /* ============ FAQ ============ */
+  .faq {
+    padding: 160px 40px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .faq-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .faq h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 80px;
+  }
+  .faq h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .faq-item {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 32px 0;
+    cursor: pointer;
+  }
+  .faq-item:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  .faq-q h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    transition: color 0.3s;
+  }
+  .faq-item:hover .faq-q h3 {
+    color: var(--accent);
+  }
+  .faq-toggle {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    transition: transform 0.4s;
+    flex-shrink: 0;
+    font-style: italic;
+  }
+  .faq-item.open .faq-toggle {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    color: rgba(244,241,234,0.65);
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 760px;
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding-top: 20px;
+  }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta {
+    padding: 160px 40px;
+    text-align: center;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10,10,10,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,10,10,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .final-cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .final-cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.5vw, 92px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 32px;
+  }
+  .final-cta h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .final-cta p {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 620px;
+    margin: 0 auto 56px;
+  }
+
+  .btn-final {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 56px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-final:hover {
+    background: var(--accent);
+    color: var(--ink);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .btn-final .arrow { transition: transform 0.3s; }
+  .btn-final:hover .arrow { transform: translateX(6px); }
+
+  .final-meta {
+    margin-top: 40px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: rgba(244,241,234,0.5);
+    padding: 60px 40px 40px;
+    border-top: 1px solid var(--ink-line);
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-inner .logo { color: var(--paper); }
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 110px 20px 60px; }
+    .problem, .solution, .process, .guarantee, .builds, .faq, .final-cta { padding-left: 20px; padding-right: 20px; }
+    .hero-proof { gap: 28px; flex-wrap: wrap; }
+    .hero-video { margin-bottom: 40px; }
+    .stat-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+    .solution-grid { grid-template-columns: 1fr; }
+    .process-header { grid-template-columns: 1fr; gap: 24px; }
+    .timeline { padding-left: 28px; }
+    .milestone { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+    .milestone::before { top: 20px; }
+    .milestone-week strong { font-size: 36px; }
+    .build-card { grid-template-columns: 1fr; gap: 20px; }
+    .build-stat { text-align: left; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">DataStaq<em>.ai</em></div>
+  <a href="#apply" class="nav-cta">Apply →</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-meta hero-meta-centered">
+      <span class="dot"></span>
+      <span id="booking-meta">US-Based · AI-Driven Development</span>
+    </div>
+
+    <h1 class="hero-h1-centered">
+      Your full MVP, custom app, or internal tool.<br>
+      Shipped in <span class="thirty">30 days.</span> <em>Guaranteed.</em>
+    </h1>
+
+    <div class="hero-video" id="video">
+      <div class="video-container">
+        <div class="video-placeholder" onclick="this.innerHTML='<div style=color:rgba(244,241,234,0.5);font-family:var(--mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase>Embed your video player here</div>'">
+          <div class="video-badge"><span class="rec"></span>Watch before you apply</div>
+          <div class="play-button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-duration">06:42</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-sub">
+      <strong>Production-grade software</strong>, fully tested, live in your users' hands — in the time most agencies take to finish discovery.
+    </p>
+
+    <div class="hero-cta-row">
+      <a href="#apply" class="btn-primary">
+        Apply to work with us <span class="arrow">→</span>
+      </a>
+      <a href="#problem-anchor" class="btn-secondary">How it works</a>
+    </div>
+
+    <div class="hero-proof">
+      <span><strong>30</strong>Day delivery</span>
+      <span><strong>100%</strong>US-based team</span>
+      <span><strong>0</strong>Change orders</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAT STRIP ============ -->
+<section class="stat-strip" id="problem-anchor">
+  <div class="stat-strip-inner">
+    <div class="stat">
+      <div class="stat-num"><em>30</em> days</div>
+      <div class="stat-label">From kickoff to production shipped</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">US<em>.</em></div>
+      <div class="stat-label">Senior team, zero offshore handoffs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">AI<em>+</em></div>
+      <div class="stat-label">Driven pipeline, human-grade quality</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><em>∞</em></div>
+      <div class="stat-label">Optional ongoing maintenance</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem">
+  <div class="section-label">The problem</div>
+  <h2>
+    <em>The traditional agency quote:</em><br>
+    <strike>$120,000.</strike> <strike>6 months.</strike> Wrong product.
+  </h2>
+
+  <div class="problem-grid">
+    <div class="problem-text">
+      <p>You sit through four scoping calls. You lock in the requirements. You sign a $80K–$150K contract. Then you wait.</p>
+      <p>Six weeks in, you talk to customers and realize the scope is already stale. Your competitor ships something. The market moves. But you can't pivot — you've already paid for a plan.</p>
+      <p>Every change is a change order. Every pivot is another invoice. Every question sent offshore takes 12 hours to come back.</p>
+      <p>Six months later, you've burned your runway. And the product you have isn't the product you need.</p>
+    </div>
+
+    <div class="problem-list">
+      <div class="problem-list-title">What you actually need</div>
+      <div class="problem-item">
+        <div class="num">01</div>
+        <div class="text">
+          <strong>Speed.</strong>
+          A real product in 30 days, not discovery decks in month two.
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="num">02</div>
+        <div class="text">
+          <strong>Quality.</strong>
+          Production-grade code. Fully tested. Not throwaway.
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="num">03</div>
+        <div class="text">
+          <strong>Predictability.</strong>
+          Flat price. One timeline. No change-order games.
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="num">04</div>
+        <div class="text">
+          <strong>Ownership.</strong>
+          Your code. Your infrastructure. No lock-in.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section class="solution">
+  <div class="solution-inner">
+    <div class="section-label">What we do differently</div>
+    <h2>
+      A US-based senior team. <em>AI-accelerated development.</em> Shipped in 30 days, every time.
+    </h2>
+
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="num">/ 01</div>
+        <h3>AI-driven <em>everywhere</em> it matters</h3>
+        <p>We've rebuilt our entire delivery pipeline around AI tooling. Boilerplate, scaffolding, testing, refactoring — the parts of building software that were always slow for no good reason. We compress weeks into days without cutting quality.</p>
+      </div>
+      <div class="solution-card">
+        <div class="num">/ 02</div>
+        <h3>US-based, <em>senior</em>, actually reachable</h3>
+        <p>No offshore handoffs. No timezone ping-pong. No junior devs learning on your dime. The engineers writing your code are the people you talk to in Slack every day — same hemisphere, same hours, same standards.</p>
+      </div>
+      <div class="solution-card">
+        <div class="num">/ 03</div>
+        <h3>Production-grade. <em>Fully tested.</em></h3>
+        <p>Real architecture. Real test coverage. Real deployment pipelines. What ships in 30 days is what ships to production — not a demo you'll have to rebuild in six months when users actually show up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process">
+  <div class="process-header">
+    <h2>Four weeks. <em>One product.</em> Live.</h2>
+    <p>Every build is different, but the shape of the 30 days isn't. Here's what actually happens between the intro call and launch day.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="milestone active">
+      <div class="milestone-week">
+        Week
+        <strong>01</strong>
+      </div>
+      <h3>Scope, architecture, kickoff.</h3>
+      <p>We align on what ships in 30 days (and what doesn't), lock the technical architecture, stand up the infrastructure, and start building. By Friday of week one you see working screens.</p>
+    </div>
+    <div class="milestone active">
+      <div class="milestone-week">
+        Week
+        <strong>02</strong>
+      </div>
+      <h3>Core product build.</h3>
+      <p>The core flows come online. Auth, data models, primary user paths. You're clicking through real functionality every day. Bugs get caught and killed in real time.</p>
+    </div>
+    <div class="milestone active">
+      <div class="milestone-week">
+        Week
+        <strong>03</strong>
+      </div>
+      <h3>Integrations, polish, testing.</h3>
+      <p>Third-party integrations, edge cases, UI polish, test coverage, performance tuning. This is where most agencies start cutting — it's where we double down.</p>
+    </div>
+    <div class="milestone active">
+      <div class="milestone-week">
+        Week
+        <strong>04</strong>
+      </div>
+      <h3>Ship to production.</h3>
+      <p>Deployment, monitoring, handoff docs, and live in your users' hands. You own the code, the infrastructure, and the keys. We optionally stay on for maintenance and next-phase builds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUARANTEE ============ -->
+<section class="guarantee">
+  <div class="guarantee-inner">
+    <div class="seal">
+      <div class="seal-ring"></div>
+      <div class="seal-inner">
+        <div class="big">30</div>
+        <div class="sm">Day · Guarantee</div>
+      </div>
+    </div>
+    <h2>If we don't ship in 30 days, <em>we keep building — on us.</em></h2>
+    <p>That's the guarantee. A flat price, a hard deadline, and a team that eats the overage if we miss. We're only able to offer this because we don't miss — but if we do, the risk sits with us, not you.</p>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section class="builds">
+  <div class="builds-header">
+    <div class="section-label">Selected builds</div>
+    <h2>What <em>30 days</em> has looked like.</h2>
+  </div>
+
+  <div class="build-card">
+    <div class="build-tag">AI Workflow Platform</div>
+    <div class="build-content">
+      <h3>A full AI-powered workflow SaaS, ready for paying users.</h3>
+      <p>Founder had been quoted 6 months and $150K by two other agencies. We shipped the first production version in 30 days. Paying users onboarded inside of 90.</p>
+    </div>
+    <div class="build-stat">
+      <div class="before">6 months / $150K quoted</div>
+      <div class="after">30 days</div>
+      <div class="after-label">to production</div>
+    </div>
+  </div>
+
+  <div class="build-card">
+    <div class="build-tag">Internal Ops Tool</div>
+    <div class="build-content">
+      <h3>Internal ops platform for an 8-figure e-commerce brand.</h3>
+      <p>They'd cycled through two offshore teams and a freelancer. Original scope: four months. We delivered the first production version in 3 weeks, then kept iterating as the ops team used it.</p>
+    </div>
+    <div class="build-stat">
+      <div class="before">4 months prior attempts</div>
+      <div class="after">21 days</div>
+      <div class="after-label">in production</div>
+    </div>
+  </div>
+
+  <div class="build-card">
+    <div class="build-tag">Fintech MVP</div>
+    <div class="build-content">
+      <h3>Compliance-aware financial data MVP for a funded pre-launch fintech.</h3>
+      <p>Needed a production-grade MVP to close their next round. Strict security, audit logs, integrations with two financial data providers. Shipped in 28 days.</p>
+    </div>
+    <div class="build-stat">
+      <div class="before">Series A timeline pressure</div>
+      <div class="after">28 days</div>
+      <div class="after-label">closed the round</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="section-label">Common questions</div>
+    <h2>Everything you're <em>probably</em> wondering.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>What if my idea is too complex to ship in 30 days?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">On the intro call, I'll tell you honestly. If it's a 60 or 90-day build, I'll say so upfront and scope a 30-day milestone that still gets you live with something real. We don't take projects we can't deliver on — the guarantee depends on it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>How is the quality actually "production-grade"?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Real architecture, real test coverage, real CI/CD, real monitoring. On the intro call I'll walk you through code from recent builds, the stack we use, and how we handle testing. You can also talk to current clients — I'd rather you hear it from them than from me.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>What does it cost?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">A flat price, quoted before we start, based on the scope we agree to on the intro call. No hourly games, no change orders, no surprise invoices. Most 30-day builds land in a predictable range we'll share openly on the call.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>What happens after the 30 days?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Your call. Take the code and run with it, bring it in-house to your own team, or keep us on for ongoing maintenance and new features on a simple monthly rate. No lock-in either way.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>Can you work with my existing team or codebase?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Yes. We regularly extend in-house engineering teams or pick up existing codebases and ship new features into them on the same 30-day cadence.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <h3>How fast can we start?</h3>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Usually within a week of the intro call. We only take on a limited number of 30-day builds at a time to protect the guarantee, so availability depends on the current queue.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="apply">
+  <div class="final-cta-inner">
+    <div class="section-label" style="justify-content: center;">Ready to build</div>
+    <h2>30 days from now,<br>it's <em>live.</em></h2>
+    <p>Fill out the form, tell me about your idea, and I'll personally review it. If we're a fit, we'll jump on a 20-minute call and map out exactly what ships in your first 30 days.</p>
+    <a href="#" class="btn-final">
+      Apply to work with us <span class="arrow">→</span>
+    </a>
+    <div class="final-meta"><span id="final-booking-meta">Taking on 2 new clients</span> · US-based · No obligation</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="logo">DataStaq<em style="color: var(--accent);">.ai</em></div>
+    <div class="footer-meta">Richmond, Virginia · © 2026 DataStaq AI</div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic booking-month text — updates automatically based on current date
+  (function() {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    const now = new Date();
+    const monthName = months[now.getMonth()];
+    const year = now.getFullYear();
+
+    const topMeta = document.getElementById('booking-meta');
+    if (topMeta) {
+      topMeta.textContent = `US-Based · AI-Driven Development · Taking on 2 new clients in ${monthName} ${year}`;
+    }
+
+    const finalMeta = document.getElementById('final-booking-meta');
+    if (finalMeta) {
+      finalMeta.textContent = `Taking on 2 new clients in ${monthName} ${year}`;
+    }
+  })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+
+  // Subtle scroll-reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.milestone, .solution-card, .build-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
