@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-// Dynamically generated 1200x630 OG / social image for the funnel.
+// Dynamically generated 1200x630 OG / social image for the home page.
 // Next.js picks this up automatically as og:image (twitter-image.js re-exports
 // it for twitter:image). No static asset to maintain.
 
