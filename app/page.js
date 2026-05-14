@@ -195,7 +195,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ 3. WHO THIS IS FOR ============ */}
-      <section className="solution no-mark">
+      <section className="solution">
         <div className="solution-inner">
           <div className="section-label">Who this is for</div>
           <h2>
@@ -278,7 +278,9 @@ export default function HomePage() {
       </section>
 
       {/* ============ 5. THE SOLUTION ============ */}
-      <section className="solution no-mark">
+      {/* .invert = the one dark feature section, for contrast against the
+          otherwise-light page (see .solution.invert in globals.css). */}
+      <section className="solution invert">
         <div className="solution-inner">
           <div className="section-label">The solution</div>
           <h2>
