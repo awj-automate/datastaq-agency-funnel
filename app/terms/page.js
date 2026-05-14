@@ -82,7 +82,7 @@ export default function TermsPage() {
 
         <h2>Contact us</h2>
         <p>
-          Questions about these Terms? Email <a href="mailto:hello@datastaq.ai">hello@datastaq.ai</a>.
+          Questions about these Terms? Email <a href="mailto:john@datastaqai.com">john@datastaqai.com</a>.
         </p>
       </main>
 

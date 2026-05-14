@@ -1,7 +1,7 @@
 // Privacy Policy — plain-language template copy generated for DataStaq AI.
 // Reasonable and reflects what the site actually does (lead forms, GA4, Meta
 // Pixel/CAPI, Calendly, Neon), but it is NOT legal advice. Have counsel review,
-// and confirm the legal entity name and the privacy@ contact address.
+// and confirm the legal entity name before relying on it.
 
 import SiteNav from '../components/SiteNav';
 
@@ -87,7 +87,7 @@ export default function PrivacyPage() {
         <p>
           Depending on where you live, you may have the right to access, correct, or delete the
           personal information we hold about you, or to object to certain processing. To make a
-          request, email us at <a href="mailto:privacy@datastaq.ai">privacy@datastaq.ai</a>.
+          request, email us at <a href="mailto:john@datastaqai.com">john@datastaqai.com</a>.
         </p>
 
         <h2>Data security</h2>
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
         <h2>Contact us</h2>
         <p>
           Questions about this policy? Email{' '}
-          <a href="mailto:privacy@datastaq.ai">privacy@datastaq.ai</a>.
+          <a href="mailto:john@datastaqai.com">john@datastaqai.com</a>.
         </p>
       </main>
 
