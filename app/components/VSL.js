@@ -60,7 +60,7 @@ export default function VSL({ videoId, aspect, badge, duration }) {
         muted={muted}
         preload="auto"
         responsive
-        primaryColor="#4D8BFE"
+        primaryColor="#BF9B5A"
         onPlay={() => fireEvent('play')}
         onEnded={() => fireEvent('complete')}
         onTimeUpdate={handleTimeUpdate}
